@@ -1,0 +1,36 @@
+<html>
+
+<head>
+    <title>Snippets</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="/js/prism.js"></script>
+    <script type="text/javascript" src="/js/wow.min.js"></script>
+    <link rel="stylesheet" href="/css/_include/prism.css" />
+    <link rel="stylesheet" href="/css/_include/animate.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+</head>
+
+<body>
+<%
+    code.forEach(function(code){
+%>
+        <div class="m_box wow fadeInUp">
+            <span class="content_btn">查看</span>
+            <p><%= code.intro %></p>
+            <pre class="line-numbers"><code class="language-<%= code.lang %>"><%= code.code %></code></pre>
+            <div class="m_box_bottom clearfix">
+                <div class="tags">
+                    <a href="javascript:void(0);" class="tag"><%= code.lang %></a>
+                </div>
+                <div class="timestamp"><%= moment(parseInt(code.timestamp)).format('YYYY/MM/DD HH:mm:ss') %></div>
+            </div>
+        </div>
+<%
+    });
+%>
+    <script src="/js/index.js"></script>
+</body>
+
+</html>
