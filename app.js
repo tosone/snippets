@@ -1,65 +1,89 @@
 "use strict";
-const koa = require("koa");
+const app = require("koa")();
 const path = require('path');
-const _ = require('lodash');
 const render = require('koa-ejs');
-const sqlite3 = require('co-sqlite3');
 const router = new require('koa-router')();
 const bodyParser = require('koa-bodyparser');
-const co = require('co');
 const moment = require("moment");
-
-const app = koa();
+const model = require('./model');
 app.use(bodyParser());
 app.use(require('koa-static')("./public"));
+app.use(router.routes()).use(router.allowedMethods());
 render(app, {
     root: path.join(__dirname, 'view'),
     layout: false,
     viewExt: 'html',
-    cache: true
+    cache: false
 });
-var languages = ["html", "xml", "css", "clike", "javascript", "actionscript", "aspnet", "autoit", "bash", "c", "csharp", "cpp", "coffeescript", "fsharp", "fortran", "go", "java", "json", "less", "lua", "makefile", "matlab", "objectivec", "perl", "php", "sass", "scss"];
-
-co(function*() {
-    const db = yield sqlite3('snippets.db');
-
-    router.get("/", function*() {
-        yield this.render('index', {
-            code: yield db.all('SELECT * FROM "code"'),
-            moment: moment
-        });
+const langs = ["html", "xml", "css", "clike", "javascript", "actionscript", "aspnet", "autoit", "bash", "c", "csharp", "cpp", "coffeescript", "fsharp", "fortran", "go",
+    "java", "json", "less", "lua", "makefile", "matlab", "objectivec", "perl", "php", "sass", "scss"
+];
+router.get("/", function*(req, res, next) {
+    let page = parseInt(this.query.page) ? parseInt(this.query.page) : 1;
+    page = page <= 1 ? 1 : page;
+    yield this.render('index', {
+        code: yield model.findCode(page - 1),
+        currpage: page,
+        count: yield model.count()
     });
-    //无限加载
-    router.get('/code/:id', function*() {
-
+});
+router.get('/edit', function*() {
+    let codeInfo = {},
+        codeid = this.query.id;
+    if(codeid) {
+        codeInfo = yield model.findCodeByID(codeid);
+    }
+    yield this.render('edit', {
+        id: codeid ? codeid : false,
+        code: codeid ? codeInfo.code : false,
+        langs: langs,
+        codelang: codeid ? codeInfo.lang : langs[0],
+        intro: codeid ? codeInfo.intro : false
     });
-    //
-    router.get('/edit', function*() {
-        yield this.render('edit', {
-            id: this.query.id ? this.query.id : false,
-            code: this.query.id ? yield db.get('SELECT * FROM "code" where id=' + this.query.id) : false,
-            lang: languages
-        });
-    });
-    router.post("/edit", function*() {
-        var data = this.request.body;
-        if (this.query.id) {
-            this.body = "update";
-        } else {
-            var intro = data.intro;
-            var code = data.code;
-            var lang = data.lang;
-            var time = moment();
-            yield db.run("INSERT INTO 'code' ('intro','code','lang','timestamp') VALUES ('" + intro + "','" + code + "','" + lang + "','" + time + "')");
-            this.body = yield {
-                code: 200
-            }
+});
+router.post("/edit", function*() {
+    let data = this.request.body,
+        codeid = this.query.id,
+        intro = data.intro,
+        lang = data.lang,
+        time = moment().format('YYYY/MM/DD HH:mm:ss'),
+        code = data.code,
+        sql = "";
+    if(codeid) {
+        sql = "UPDATE code set intro='" + intro + "', code='" + code + "', lang='" + lang + "', timestamp='" + time + "' where id='" + codeid + "'";
+    } else {
+        sql = "INSERT INTO code (intro, code, lang, timestamp) VALUES ('" + intro + "','" + code + "','" + lang + "','" + time + "')";
+    }
+    if(yield model.run(sql)) {
+        this.body = {
+            code: 200
         }
-    })
-
-    app.use(router.routes()).use(router.allowedMethods());
-
-    app.listen(80, function() {
-        console.log("listen 80")
+    } else {
+        this.body = {
+            code: 500
+        }
+    }
+});
+router.get("/delete", function*() {
+    let id = this.query.id;
+    if(yield model.run("DELETE from code where id=" + id)) {
+        this.body = {
+            code: 200
+        }
+    } else {
+        this.body = {
+            code: 500
+        }
+    }
+});
+router.get("/:lang", function*() {
+    let lang = this.params.lang;
+    let page = this.query.page ? parseInt(this.query.page) : 0;
+    yield this.render('index', {
+        code: yield model.findCode(page - 1, lang),
+        moment: moment
     });
-})
+});
+app.listen(3000, function() {
+    console.log("Server running at http://127.0.0.1:80.")
+});

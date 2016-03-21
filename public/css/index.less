@@ -1,0 +1,138 @@
+@border-raius: 4px;
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: Consolas, 'Microsoft YaHei';
+    background-image: url(../img/bg.png);
+    background-attachment: fixed;
+    margin-bottom: 70px;
+    .container {
+        margin: 0 auto;
+        width: 1000px;
+    }
+    .clearfix::after {
+        content: "";
+        display: block;
+        clear: both;
+        visibility: hidden;
+        line-height: 0;
+        height: 0;
+        font-size: 0;
+    }
+    .paging{
+        margin: 0 auto;
+        display: table;
+        font-size: 15px;
+        font-family: 'Microsoft YaHei';
+        .ban{
+            color: rgba(204,102,153,.5);
+            text-shadow: 0 0 1px rgba(204,102,153,.5);
+            &:hover{
+                color: rgba(204,102,153,.5);
+                background-color: white;
+                text-shadow: 0 0 1px rgba(204,102,153,.5);
+            }
+        }
+        a,span{
+            padding: 10px 15px;
+            display: inline;
+            background-color: #fff;
+            float: left;
+            color: #c69;
+            text-decoration: none;
+            text-shadow: 0 0 1px #c69;
+            border-left: .1rem solid #c69;
+            border-bottom: 1px solid #c69;
+            border-top: 1px solid #c69;
+            box-shadow: 0 0 1px #c69;
+        }
+        a:hover{
+            cursor: pointer;
+            background-color: #c69;
+            color: white;
+            text-shadow: 0 0 1px white;
+        }
+        a:first-child{
+            border-top-left-radius: @border-raius;
+            border-bottom-left-radius: @border-raius;
+        }
+        a:last-child{
+            border-top-right-radius: @border-raius;
+            border-bottom-right-radius: @border-raius;
+            border-right: 1px solid #c69;
+        }
+        span{
+            color: #333;
+            text-shadow: 0 0 1px #333;
+        }
+    }
+    .box {
+        position: relative;
+        background-color: #f4f6f8;
+        font-size: 15px;
+        line-height: 1.8;
+        margin: 15px 0px;
+        padding: 0px 15px;
+        border: 1px solid #c5c5c5;
+        border-radius: @border-raius;
+        .delete {
+            background-color: rgba(255, 0, 0, 0.5);
+            color: #fff;
+            padding: 3px 9px;
+            position: absolute;
+            cursor: pointer;
+            right: 70;
+            &:hover {
+                background-color: rgba(255, 0, 0, 0.3);
+            }
+        }
+        .edit {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 3px 9px;
+            position: absolute;
+            cursor: pointer;
+            right: 0;
+            border-top-right-radius: @border-raius;
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.4);
+            }
+        }
+        .lang {
+            background-color: rgba(61, 110, 116, 1);
+            color: #fff;
+            padding: 3px 9px;
+            position: absolute;
+            cursor: pointer;
+            left: 0;
+            border-top-left-radius: @border-raius;
+            &:hover {
+                background-color: rgba(61, 110, 116, .8);
+            }
+        }
+        p {
+            margin-top: 42px;
+            margin-bottom: 10px;
+            .timestamp {
+                color: #8A8A8A;
+                margin-left: 5px;
+            }
+        }
+        .tag {
+            font-size: 15px;
+            background: #348884;
+            text-decoration: none;
+            color: #fff;
+            height: 18px;
+            line-height: 18px;
+            padding: 3px 10px;
+            border-radius: @border-raius;
+            display: inline-block;
+            bottom: 7px;
+            position: relative;
+            &:hover {
+                background-color: #5D9693;
+            }
+        }
+    }
+}

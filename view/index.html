@@ -5,32 +5,44 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" src="/js/prism.js"></script>
-    <script type="text/javascript" src="/js/wow.min.js"></script>
     <link rel="stylesheet" href="/css/_include/prism.css" />
     <link rel="stylesheet" href="/css/_include/animate.css" />
     <link rel="stylesheet" href="/css/index.css" />
 </head>
 
 <body>
+    <div class="container">
 <%
-    code.forEach(function(code){
+        code.forEach(function(code) {
 %>
-        <div class="m_box wow fadeInUp">
-            <span class="content_btn">查看</span>
-            <p><%= code.intro %></p>
-            <pre class="line-numbers"><code class="language-<%= code.lang %>"><%= code.code %></code></pre>
-            <div class="m_box_bottom clearfix">
-                <div class="tags">
-                    <a href="javascript:void(0);" class="tag"><%= code.lang %></a>
-                </div>
-                <div class="timestamp"><%= moment(parseInt(code.timestamp)).format('YYYY/MM/DD HH:mm:ss') %></div>
+            <div class="box wow fadeInUp">
+                <span class="lang" data-id="<%= code.id %>"><%= code.lang %></span>
+                <span class="edit" data-id="<%= code.id %>">编辑</span>
+                <span class="delete" data-id="<%= code.id %>">删除</span>
+                <p><%= code.intro %><span class="timestamp">(<%= code.timestamp %>)</span></p>
+                <pre class="line-numbers"><code class="language-<%= code.lang %>"><%= code.code %></code></pre>
             </div>
-        </div>
 <%
-    });
+        });
 %>
-    <script src="/js/index.js"></script>
+        <div class="paging">
+            <a href="/" <% if (currpage === 1) { %>
+                "class=ban"
+            <% } %>>首页</a>
+        </div>
+    </div>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/prism.js"></script>
+    <script type="text/javascript" src="/js/wow.min.js"></script>
+    <script type="text/javascript">
+        new WOW().init();
+        $('.lang').click(function(event) {
+            window.location.href = '/' + $(this).text();
+        });
+        $('.edit').click(function(event) {
+            window.location.href = '/edit?id=' + $(this).data("id");
+        });
+    </script>
 </body>
 
 </html>

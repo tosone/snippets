@@ -2,37 +2,43 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head runat="server">
-    <title>Tosone的微博客</title>
+    <title>Add Snippet</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="description" content="Snippets" />
     <meta name="author" content="Tosone" />
     <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="stylesheet" href="/css/editor.css" />
+    <link rel="stylesheet" href="/css/edit.css" />
 </head>
 
-<body class="container">
-    <div class="container editor_con">
+<body>
+    <div class="container">
         <div class="form_group clearfix">
             <div class="descri">
                 <label for="intro">介绍</label>
             </div>
-            <div class="con_input">
-                <textarea id="intro" placeholder="介绍"></textarea>
+            <div class="content">
+                <textarea id="intro" placeholder="介绍"><%= intro ? intro : "" %></textarea>
             </div>
         </div>
         <div class="form_group clearfix">
             <div class="descri">
                 <label for="code">语言</label>
             </div>
-            <div class="con_input">
-                <select id="">
+            <div class="content">
+                <select id="lang" class="lang">
 <%
-                    langs.forEach(function(lang){
+                    langs.forEach(function(lang) {
+						if(lang === codelang) {
 %>
-                        <option value="language-<%= lang %>"><%= lang %></option>
+                            <option value="language-<%= lang %>" selected><%= lang %></option>
 <%
-                    })
-%>                    
+						} else {
+%>
+                            <option value="language-<%= lang %>"><%= lang %></option>
+<%
+						}
+                    });
+%>
                 </select>
             </div>
         </div>
@@ -40,16 +46,8 @@
             <div class="descri">
                 <label for="code">代码</label>
             </div>
-            <div class="con_input">
-                <textarea id="code" placeholder="代码" style="height: 530px;font-size: 12px;line-height: 1.5;"></textarea>
-            </div>
-        </div>
-        <div class="form_group clearfix">
-            <div class="descri">
-                <label for="tags">标签</label>
-            </div>
-            <div class="con_input">
-                <input type="text" id="tags" placeholder="多个标签请以英文分号分隔" value="" />
+            <div class="content">
+                <textarea id="code" placeholder="代码"><%= code ? code : "" %></textarea>
             </div>
         </div>
         <div class="form_group">
@@ -57,7 +55,7 @@
         </div>
     </div>
     <script type="text/javascript">
-        var url = "/edit<%= id ? ("?id=" + id) : ""%>";
+    var url = "/edit<%= id ? ("?id=" + id) : ""%>";
     </script>
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script type="text/javascript" src="/js/add.js"></script>
