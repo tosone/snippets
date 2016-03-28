@@ -1,21 +1,32 @@
 {
-    "name": "snippets",
-    "version": "1.0.0",
-    "description": "snippets",
-    "main": "app.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "",
-    "license": "MIT",
-    "dependencies": {
-        "koa": "^1.2.0",
-        "koa-bodyparser": "^2.0.1",
-        "koa-ejs": "^3.0.0",
-        "koa-router": "^5.4.0",
-        "koa-static": "^2.0.0",
-        "moment": "^2.12.0",
-        "sqlite3": "^3.1.1"
-    },
-    "repository": ""
+  "name": "snippets",
+  "version": "1.0.0",
+  "description": "snippets",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "tosone",
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^1.2.0",
+    "koa-bodyparser": "^2.0.1",
+    "koa-ejs": "^3.0.0",
+    "koa-router": "^5.4.0",
+    "koa-static": "^2.0.0",
+    "moment": "^2.12.0",
+    "sqlite3": "^3.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tosone/snippets.git"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "snippets"
+  ],
+  "bugs": {
+    "url": "https://github.com/tosone/snippets/issues"
+  },
+  "homepage": "https://github.com/tosone/snippets#readme"
 }
