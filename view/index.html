@@ -26,17 +26,22 @@
         });
 %>
         <div class="paging">
-            <a href="/" <%= (currpage === 1) ? "class=ban" : "" %>>首页</a>
-            <a href="/<%= (currpage > 1) ? ("?page=" + (currpage - 1)) : "" %>" <%= (currpage > 1) ? "" : "class=ban" %>>上一页</a>
-            <span><%= currpage %> / <%= count %></span>
-            <a href="/<%= (currpage < count) ? ("?page=" + (currpage + 1)) : ("?page=" + count) %>" <%= (currpage < count) ? "" : "class=ban" %>>下一页</a>
-            <a href="/<%= "?page=" + count %>" <%= (currpage < count) ? "" : "class=ban" %>>尾页</a>
+            <a href="/" id="fontPage">首页</a>
+            <a href="" id="prePage">上一页</a>
+            <span><span id="current"></span> / <span id="count"></span></span>
+            <a href="" id="nextPage">下一页</a>
+            <a href="" id="tailPage">尾页</a>
         </div>
     </div>
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script type="text/javascript" src="/js/prism.js"></script>
     <script type="text/javascript" src="/js/wow.min.js"></script>
     <script type="text/javascript">
+        var currpage = <%=currpage%>;
+        var count = <%= count %>;
+        if(currpage == 1) {
+          $("#fontPage").attr("href")
+        }
         new WOW().init();
         $('.lang').click(function(event) {
             window.location.href = '/' + $(this).text();
