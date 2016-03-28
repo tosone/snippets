@@ -1,4 +1,4 @@
-<html>
+﻿<html>
 
 <head>
     <title>Snippets</title>
@@ -8,68 +8,38 @@
     <link rel="stylesheet" href="/css/_include/prism.css" />
     <link rel="stylesheet" href="/css/_include/animate.css" />
     <link rel="stylesheet" href="/css/index.css" />
+    <script type="text/javascript">
+        var count = <%= page.count %>, currpage = <%= page.cpage %>;
+    </script>
 </head>
 
 <body>
     <div class="container">
-<%
+        <%
         code.forEach(function(code) {
-%>
-            <div class="box wow fadeInUp">
+        %>
+            <div class="box" id="<%= code.id %>">
                 <span class="lang" data-id="<%= code.id %>"><%= code.lang %></span>
                 <span class="edit" data-id="<%= code.id %>">编辑</span>
                 <span class="delete" data-id="<%= code.id %>">删除</span>
                 <p><%= code.intro %><span class="timestamp">(<%= code.timestamp %>)</span></p>
                 <pre class="line-numbers"><code class="language-<%= code.lang %>"><%= code.code %></code></pre>
             </div>
-<%
+        <%
         });
-%>
+        %>
         <div class="paging">
             <a href="/" id="fontPage">首页</a>
             <a href="" id="prePage">上一页</a>
-            <span><span id="currpage"></span> / <span id="count"></span></span>
+            <span><page id="currpage"></page> / <page id="count"></page></span>
             <a href="" id="nextPage">下一页</a>
             <a href="" id="tailPage">尾页</a>
         </div>
     </div>
+    
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script type="text/javascript" src="/js/prism.js"></script>
-    <script type="text/javascript" src="/js/wow.min.js"></script>
-    <script type="text/javascript">
-        var currpage = <%=currpage%>;
-        var count = <%= count %>;
-        $("#currpage").html(currpage);
-        $("#count").html(count);
-        if(currpage == 1 && count == 1) {
-          $("#fontPage").addClass("ban").attr("href","/?page=1");
-          $("#prePage").addClass("ban").attr("href","/?page=1");
-          $("#nextPage").addClass("ban").attr("href","/?page=1");
-          $("#tailPage").addClass("ban").attr("href","/?page=1");
-        } else if(currpage == 1 && count != 1) {
-          $("#fontPage").addClass("ban").attr("href","/?page=1");
-          $("#prePage").addClass("ban").attr("href","/?page=1");
-          $("#nextPage").attr("href","/?page=2");
-          $("#tailPage").attr("href","/?page="+count);
-        } else if(currpage != 1 && currpage < count) {
-          $("#fontPage").attr("href","/?page=1");
-          $("#prePage").attr("href","/?page="+(currpage - 1));
-          $("#nextPage").attr("href","/?page="+(currpage+1));
-          $("#tailPage").attr("href","/?page="+count);
-        } else if(currpage == count && currpage != 1) {
-          $("#fontPage").attr("href","");
-          $("#prePage").attr("href","");
-          $("#nextPage").addClass("ban").attr("href","");
-          $("#tailPage").addClass("ban").attr("href","");
-        }
-        new WOW().init();
-        $('.lang').click(function(event) {
-            window.location.href = '/' + $(this).text();
-        });
-        $('.edit').click(function(event) {
-            window.location.href = '/edit?id=' + $(this).data("id");
-        });
-    </script>
+    <script type="text/javascript" src="/js/index.js"></script>
 </body>
 
 </html>
