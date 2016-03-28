@@ -12,3 +12,10 @@ co(function*() {
 })
 const moment = require("moment");
 console.log(moment().format('YYYY/MM/DD HH:mm:ss'));
+
+
+<a href="/" <%= (currpage === 1) ? "class=ban" : "" %>>首页</a>
+<a href="/<%= (currpage > 1) ? ("?page=" + (currpage - 1)) : "" %>" <%= (currpage > 1) ? "" : "class=ban" %>>上一页</a>
+<span><%= currpage %> / <%= count %></span>
+<a href="/<%= (currpage < count) ? ("?page=" + (currpage + 1)) : ("?page=" + count) %>" <%= (currpage < count) ? "" : "class=ban" %>>下一页</a>
+<a href="/<%= "?page=" + count %>" <%= (currpage < count) ? "" : "class=ban" %>>尾页</a>
