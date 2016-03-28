@@ -6,6 +6,7 @@ const router = new require('koa-router')();
 const bodyParser = require('koa-bodyparser');
 const moment = require("moment");
 const model = require('./model');
+const fs = require('fs');
 app.use(bodyParser());
 app.use(require('koa-static')("./public"));
 app.use(router.routes()).use(router.allowedMethods());
@@ -92,7 +93,10 @@ router.get("/delete", function*() {
         }
     }
 });
-
-app.listen(3000, function() {
-    console.log("Server running at http://127.0.0.1:80.")
+fs.exists("./snippets.db", (exists) => {
+    model.run('CREATE TABLE "code" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"intro" TEXT NOT NULL,"code" TEXT NOT NULL,"lang" TEXT NOT NULL,"timestamp" TEXT NOT NULL)').then(() => {
+        app.listen(3000, function() {
+            console.log("Server running at http://127.0.0.1:80.");
+        });
+    });
 });

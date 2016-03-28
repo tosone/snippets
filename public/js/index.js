@@ -33,8 +33,7 @@ $('.delete').click(function() {
         id: $(this).data("id")
     }, function(data) {
         if (data.code == 200) {
-            dom.slideUp();
-            alert("删除成功");
-        } else alert("删除失败");
+            dom.addClass("animated slideOutUp");
+        }
     });
 })

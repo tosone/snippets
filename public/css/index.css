@@ -1,1 +1,304 @@
-body{margin:0;padding:0;font-family:Consolas,'Microsoft YaHei';background-image:url(../img/bg.png);background-attachment:fixed;margin-bottom:70px}body .container{margin:0 auto;width:1000px}body .clearfix::after{content:"";display:block;clear:both;visibility:hidden;line-height:0;height:0;font-size:0}body .paging{margin:0 auto;display:table;font-size:15px;font-family:'Microsoft YaHei'}body .paging .ban{color:rgba(204,102,153,0.5);text-shadow:0 0 1px rgba(204,102,153,0.5)}body .paging .ban:hover{color:rgba(204,102,153,0.5);background-color:#fff;text-shadow:0 0 1px rgba(204,102,153,0.5)}body .paging a,body .paging span{padding:10px 15px;display:inline;background-color:#fff;float:left;color:#c69;text-decoration:none;text-shadow:0 0 1px #c69;border-left:.1rem solid #c69;border-bottom:1px solid #c69;border-top:1px solid #c69;box-shadow:0 0 1px #c69}body .paging a:hover{cursor:pointer;background-color:#c69;color:#fff;text-shadow:0 0 1px #fff}body .paging a:first-child{border-top-left-radius:4px;border-bottom-left-radius:4px}body .paging a:last-child{border-top-right-radius:4px;border-bottom-right-radius:4px;border-right:1px solid #c69}body .paging span{color:#333;text-shadow:0 0 1px #333}body .box{position:relative;background-color:#f4f6f8;font-size:15px;line-height:1.8;margin:15px 0;padding:0 15px;border:1px solid #c5c5c5;border-radius:4px}body .box .delete{background-color:rgba(255,0,0,0.5);color:#fff;padding:3px 9px;position:absolute;cursor:pointer;right:70}body .box .delete:hover{background-color:rgba(255,0,0,0.3)}body .box .edit{background-color:rgba(0,0,0,0.5);color:#fff;padding:3px 9px;position:absolute;cursor:pointer;right:0;border-top-right-radius:4px}body .box .edit:hover{background-color:rgba(0,0,0,0.4)}body .box .lang{background-color:#3d6e74;color:#fff;padding:3px 9px;position:absolute;cursor:pointer;left:0;border-top-left-radius:4px}body .box .lang:hover{background-color:rgba(61,110,116,0.8)}body .box p{margin-top:42px;margin-bottom:10px}body .box p .timestamp{color:#8a8a8a;margin-left:5px}body .box .tag{font-size:15px;background:#348884;text-decoration:none;color:#fff;height:18px;line-height:18px;padding:3px 10px;border-radius:4px;display:inline-block;bottom:7px;position:relative}body .box .tag:hover{background-color:#5d9693}
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: Consolas, 'Microsoft YaHei';
+  background-image: url(../img/bg.png);
+  background-attachment: fixed;
+  margin-bottom: 70px;
+}
+body .container {
+  margin: 0 auto;
+  width: 1000px;
+}
+body .clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+  font-size: 0;
+}
+body .paging {
+  margin: 0 auto;
+  display: table;
+  font-size: 15px;
+  font-family: 'Microsoft YaHei';
+}
+body .paging .ban {
+  color: rgba(204, 102, 153, 0.5);
+  text-shadow: 0 0 1px rgba(204, 102, 153, 0.5);
+}
+body .paging .ban:hover {
+  color: rgba(204, 102, 153, 0.5);
+  background-color: white;
+  text-shadow: 0 0 1px rgba(204, 102, 153, 0.5);
+}
+body .paging a,
+body .paging span {
+  padding: 10px 15px;
+  display: inline;
+  background-color: #fff;
+  float: left;
+  color: #c69;
+  text-decoration: none;
+  text-shadow: 0 0 1px #c69;
+  border-left: .1rem solid #c69;
+  border-bottom: 1px solid #c69;
+  border-top: 1px solid #c69;
+  box-shadow: 0 0 1px #c69;
+}
+body .paging a:hover {
+  cursor: pointer;
+  background-color: #c69;
+  color: white;
+  text-shadow: 0 0 1px white;
+}
+body .paging a:first-child {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+body .paging a:last-child {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-right: 1px solid #c69;
+}
+body .paging span {
+  color: #333;
+  text-shadow: 0 0 1px #333;
+}
+body .box {
+  position: relative;
+  background-color: #f4f6f8;
+  font-size: 15px;
+  line-height: 1.8;
+  margin: 15px 0px;
+  padding: 0px 15px;
+  border: 1px solid #c5c5c5;
+  border-radius: 4px;
+}
+body .box .delete {
+  background-color: rgba(255, 0, 0, 0.5);
+  color: #fff;
+  padding: 3px 9px;
+  position: absolute;
+  cursor: pointer;
+  right: 70;
+}
+body .box .delete:hover {
+  background-color: rgba(255, 0, 0, 0.3);
+}
+body .box .edit {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 3px 9px;
+  position: absolute;
+  cursor: pointer;
+  right: 0;
+  border-top-right-radius: 4px;
+}
+body .box .edit:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+body .box .lang {
+  background-color: #3d6e74;
+  color: #fff;
+  padding: 3px 9px;
+  position: absolute;
+  cursor: pointer;
+  left: 0;
+  border-top-left-radius: 4px;
+}
+body .box .lang:hover {
+  background-color: rgba(61, 110, 116, 0.8);
+}
+body .box p {
+  margin-top: 42px;
+  margin-bottom: 10px;
+}
+body .box p .timestamp {
+  color: #8A8A8A;
+  margin-left: 5px;
+}
+body .box .tag {
+  font-size: 15px;
+  background: #348884;
+  text-decoration: none;
+  color: #fff;
+  height: 18px;
+  line-height: 18px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  display: inline-block;
+  bottom: 7px;
+  position: relative;
+}
+body .box .tag:hover {
+  background-color: #5D9693;
+}
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@keyframes slideOutUp {
+  0% {
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(-2000px);
+    -ms-transform: translateY(-2000px);
+    transform: translateY(-2000px);
+    height: 0;
+  }
+}
+.slideOutUp {
+  -webkit-animation-name: slideOutUp;
+  animation-name: slideOutUp;
+}
+/* http://127.0.0.1:3000/download.html?themes=prism-okaidia&languages=markup+css+clike+javascript+actionscript+aspnet+autoit+bash+c+csharp+cpp+coffeescript+fsharp+fortran+go+java+json+less+lua+makefile+matlab+objectivec+perl+php+sass+scss&plugins=line-numbers+autolinker */
+/**
+ * okaidia theme for JavaScript, CSS and HTML
+ * Loosely based on Monokai textmate theme by http://www.monokai.nl/
+ * @author ocodia
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #f8f8f2;
+  background: none;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace, "Microsoft YaHei";
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+/* Code blocks */
+pre[class*="language-"] {
+  padding: 1em;
+  margin: .5em 0;
+  overflow: auto;
+  border-radius: 0.3em;
+}
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+  background: #272822;
+}
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+}
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: slategray;
+}
+.token.punctuation {
+  color: #f8f8f2;
+}
+.namespace {
+  opacity: .7;
+}
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #f92672;
+}
+.token.boolean,
+.token.number {
+  color: #ae81ff;
+}
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #a6e22e;
+}
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+  color: #f8f8f2;
+}
+.token.atrule,
+.token.attr-value,
+.token.function {
+  color: #e6db74;
+}
+.token.keyword {
+  color: #66d9ef;
+}
+.token.regex,
+.token.important {
+  color: #fd971f;
+}
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+.token.italic {
+  font-style: italic;
+}
+.token.entity {
+  cursor: help;
+}
+pre.line-numbers {
+  position: relative;
+  padding-left: 3.8em;
+  counter-reset: linenumber;
+}
+pre.line-numbers > code {
+  position: relative;
+}
+.line-numbers .line-numbers-rows {
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  font-size: 100%;
+  left: -3.8em;
+  width: 3em;
+  /* works for line-numbers below 1000 lines */
+  letter-spacing: -1px;
+  border-right: 1px solid #999;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.line-numbers-rows > span {
+  pointer-events: none;
+  display: block;
+  counter-increment: linenumber;
+}
+.line-numbers-rows > span:before {
+  content: counter(linenumber);
+  color: #999;
+  display: block;
+  padding-right: 0.8em;
+  text-align: right;
+}
+.token a {
+  color: inherit;
+}
