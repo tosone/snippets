@@ -94,7 +94,7 @@ router.get("/delete", function*() {
     }
 });
 fs.exists("./snippets.db", (exists) => {
-    model.run('CREATE TABLE "code" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"intro" TEXT NOT NULL,"code" TEXT NOT NULL,"lang" TEXT NOT NULL,"timestamp" TEXT NOT NULL)').then(() => {
+    model.run('CREATE TABLE IF NOT EXISTS "code" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"intro" TEXT NOT NULL,"code" TEXT NOT NULL,"lang" TEXT NOT NULL,"timestamp" TEXT NOT NULL)').then(() => {
         app.listen(3000, function() {
             console.log("Server running at http://127.0.0.1:80.");
         });
